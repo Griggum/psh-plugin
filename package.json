@@ -1,0 +1,73 @@
+{
+  "name": "python-syntax-highlighter",
+  "displayName": "Enhanced Python Syntax Highlighter",
+  "description": "Advanced Python syntax highlighting with custom support for naming conventions and library-specific functions",
+  "version": "0.1.1",
+  "publisher": "psh-plugin",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Themes"
+  ],
+  "keywords": [
+    "python",
+    "syntax",
+    "highlighting",
+    "camelCase",
+    "PascalCase",
+    "numpy",
+    "pandas"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "python",
+        "aliases": ["Python", "py"],
+        "extensions": [".py", ".pyi", ".pyw"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "python",
+        "scopeName": "source.python.enhanced",
+        "path": "./syntaxes/python.tmLanguage.json",
+        "injectTo": ["source.python"]
+      }
+    ],
+    "themes": [
+      {
+        "label": "Python Enhanced Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/PythonHighlighter-color-theme.json"
+      }
+    ]
+  },
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onLanguage:python"
+  ],
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "eslint": "^8.20.0",
+    "typescript": "^4.7.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sindresorhus/psh-plugin.git"
+  },
+  "license": "MIT"
+} 
