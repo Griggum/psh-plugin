@@ -2,7 +2,7 @@
   "name": "python-syntax-highlighter",
   "displayName": "Enhanced Python Syntax Highlighter",
   "description": "Advanced Python syntax highlighting with custom support for naming conventions and library-specific functions",
-  "version": "0.1.1",
+  "version": "1.0.1",
   "publisher": "psh-plugin",
   "engines": {
     "vscode": "^1.60.0"
@@ -39,12 +39,153 @@
     ],
     "themes": [
       {
-        "label": "Python Enhanced Dark",
+        "label": "Python Enhanced (Custom Scopes Only)",
         "uiTheme": "vs-dark",
         "path": "./themes/PythonHighlighter-color-theme.json"
       }
-    ]
-  },
+    ],
+    "configuration": {
+      "title": "Enhanced Python Syntax Highlighter",
+      "properties": {
+        "pythonHighlighter.enableCamelCase": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable highlighting for camelCase identifiers"
+        },
+        "pythonHighlighter.enablePascalCase": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable highlighting for PascalCase identifiers"
+        },
+        "pythonHighlighter.enableLibraryFunctions": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable highlighting for library-specific functions (NumPy, Pandas, etc.)"
+        },
+        "pythonHighlighter.camelCaseColor": {
+          "type": "string",
+          "default": "#4EC9B0",
+          "description": "Color for camelCase identifiers (hex format)"
+        },
+        "pythonHighlighter.pascalCaseColor": {
+          "type": "string",
+          "default": "#FF8C00",
+          "description": "Color for PascalCase identifiers (hex format)"
+        },
+        "pythonHighlighter.numpyColor": {
+          "type": "string",
+          "default": "#4A9EFF",
+          "description": "Color for NumPy functions (hex format)"
+        },
+        "pythonHighlighter.pandasColor": {
+          "type": "string",
+          "default": "#DA70D6",
+          "description": "Color for Pandas functions (hex format)"
+        },
+        "pythonHighlighter.autoApplySettings": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically apply highlighting settings to current theme"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "pythonHighlighter.applyHighlighting",
+        "title": "Apply Python Enhanced Highlighting",
+        "category": "Python Highlighter"
+      },
+      {
+        "command": "pythonHighlighter.removeHighlighting", 
+        "title": "Remove Python Enhanced Highlighting",
+        "category": "Python Highlighter"
+      },
+      {
+        "command": "pythonHighlighter.openSettings",
+        "title": "Open Highlighter Settings",
+        "category": "Python Highlighter"
+      },
+      {
+        "command": "pythonHighlighter.resetToDefaults",
+        "title": "Reset to Default Colors",
+        "category": "Python Highlighter"
+      },
+      {
+        "command": "pythonHighlighter.showImportMappings",
+        "title": "Show Discovered Import Mappings (Debug)",
+        "category": "Python Highlighter"
+      }
+    ],
+    "semanticTokenTypes": [
+      {
+        "id": "numpyFunction",
+        "description": "NumPy function call"
+      },
+      {
+        "id": "numpyModule", 
+        "description": "NumPy module alias"
+      },
+      {
+        "id": "pandasFunction",
+        "description": "Pandas function call"
+      },
+      {
+        "id": "pandasModule",
+        "description": "Pandas module alias"
+      },
+      {
+        "id": "pandasClass",
+        "description": "Pandas class constructor"
+      },
+      {
+        "id": "camelCaseVar",
+        "description": "camelCase variable"
+      },
+      {
+        "id": "pascalCaseVar", 
+        "description": "PascalCase variable"
+      },
+      {
+        "id": "libraryFunction",
+        "description": "Generic library function"
+      },
+      {
+        "id": "libraryModule",
+        "description": "Generic library module"
+      }
+    ],
+    "semanticTokenModifiers": [
+      {
+        "id": "imported",
+        "description": "Imported from a library"
+      },
+      {
+        "id": "aliased",
+        "description": "Used with an alias"
+      }
+    ],
+    "semanticTokenScopes": [
+      {
+        "scopes": {
+          "numpyFunction": ["support.function.numpy.python"],
+          "numpyModule": ["support.module.numpy.python"],
+          "pandasFunction": ["support.function.pandas.python"], 
+          "pandasModule": ["support.module.pandas.python"],
+          "pandasClass": ["support.class.pandas.python"],
+          "camelCaseVar": ["variable.camelcase.python"],
+          "pascalCaseVar": ["variable.pascalcase.python"],
+          "libraryFunction": ["support.function.library.python"],
+          "libraryModule": ["support.module.library.python"]
+                 }
+       }
+     ],
+     "semanticTokenProviders": [
+       {
+         "language": "python",
+         "scheme": "*"
+       }
+     ]
+   },
   "main": "./out/extension.js",
   "activationEvents": [
     "onLanguage:python"

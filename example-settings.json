@@ -1,0 +1,79 @@
+{
+  "// Add this to your VSCode settings.json to get custom Python highlighting with ANY theme": "",
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "name": "Python camelCase Variables",
+        "scope": ["variable.camelcase.python"],
+        "settings": {
+          "foreground": "#4EC9B0",
+          "fontStyle": ""
+        }
+      },
+      {
+        "name": "Python PascalCase Variables", 
+        "scope": ["variable.pascalcase.python"],
+        "settings": {
+          "foreground": "#FF8C00",
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "name": "NumPy Functions",
+        "scope": ["support.function.numpy.python"],
+        "settings": {
+          "foreground": "#4A9EFF",
+          "fontStyle": "italic"
+        }
+      },
+      {
+        "name": "NumPy Module",
+        "scope": ["support.module.numpy.python"],
+        "settings": {
+          "foreground": "#7BB3FF",
+          "fontStyle": ""
+        }
+      },
+      {
+        "name": "Pandas Functions",
+        "scope": ["support.function.pandas.python"],
+        "settings": {
+          "foreground": "#DA70D6",
+          "fontStyle": "italic"
+        }
+      },
+      {
+        "name": "Pandas Module",
+        "scope": ["support.module.pandas.python"],
+        "settings": {
+          "foreground": "#E6A8E6",
+          "fontStyle": ""
+        }
+      },
+      {
+        "name": "Pandas Classes",
+        "scope": ["support.class.pandas.python"],
+        "settings": {
+          "foreground": "#E6B3FF",
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "name": "Generic Library Functions",
+        "scope": ["support.function.library.python"],
+        "settings": {
+          "foreground": "#DCDCAA",
+          "fontStyle": "italic"
+        }
+      },
+      {
+        "name": "Generic Library Modules",
+        "scope": ["support.module.library.python"],
+        "settings": {
+          "foreground": "#F0E68C",
+          "fontStyle": ""
+        }
+      }
+    ]
+  }
+} 

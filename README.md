@@ -53,12 +53,41 @@ A VSCode/Cursor extension that provides advanced Python syntax highlighting with
 
 ## 🎯 Usage
 
-1. **Install the extension** using one of the methods above
+### 🚀 **Automatic Setup (Recommended)**
+
+1. **Install the extension** (`python-syntax-highlighter-1.0.1.vsix`)
 2. **Open a Python file** (`.py`, `.pyi`, `.pyw`)
-3. **Activate the theme**: 
-   - Go to `File > Preferences > Color Theme`
-   - Select "Python Enhanced Dark"
-4. **Start coding** and enjoy the enhanced highlighting!
+3. **Done!** The extension automatically provides semantic highlighting
+
+**🔧 FIXED: Stable TextMate + Import Analysis**
+- ✅ **Restored default Python highlighting** - All standard Python syntax works correctly
+- ✅ **Enhanced alias detection** - Handles common aliases like `npy`, `dataframes`, etc.
+- ✅ **Library function highlighting** - NumPy (blue), Pandas (purple) functions properly colored
+- ✅ **Naming conventions** - camelCase (teal) and PascalCase (orange/bold) identifiers
+- ✅ **Works with any theme** - Adds custom highlighting on top of your existing theme
+
+### 🎛️ **Customization via VSCode Settings**
+
+1. **Open Settings**: `Cmd/Ctrl + ,` → Search "Python Highlighter"
+2. **Configure options**:
+   - Toggle camelCase/PascalCase highlighting
+   - Toggle library function highlighting  
+   - Customize colors for each pattern type
+   - Enable/disable auto-apply
+3. **Changes apply instantly** (if auto-apply is enabled)
+
+### 📋 **Command Palette Actions**
+
+Press `Cmd/Ctrl + Shift + P` and search for:
+- **`Apply Python Enhanced Highlighting`** - Manually apply settings
+- **`Remove Python Enhanced Highlighting`** - Remove custom highlighting
+- **`Open Highlighter Settings`** - Jump to extension settings
+- **`Reset to Default Colors`** - Restore default color scheme
+- **`Show Discovered Import Mappings`** - Debug: View detected import aliases
+
+### 🎨 **Manual Configuration (Advanced)**
+
+If you prefer manual control, see `example-settings.json` for copy-paste configuration.
 
 ### Example Highlighting
 
@@ -85,27 +114,52 @@ csv_data = pd.read_csv('file.csv')
 
 ## ⚙️ Configuration
 
-The extension works out of the box, but you can customize it by:
+The extension works out of the box with any theme! You can customize it by:
 
-1. **Using the custom theme** for best results
-2. **Modifying the theme colors** in your VSCode settings
-3. **Adding custom scope rules** to your settings.json
+1. **Using the example configuration** (see `example-settings.json`)
+2. **Customizing colors** in your VSCode settings
+3. **Creating theme-specific rules** for different themes
 
 ### Custom Color Configuration
 
-Add to your `settings.json`:
+#### For ANY Theme (Recommended):
+Copy the contents of `example-settings.json` to your VSCode `settings.json`:
 
 ```json
 {
   "editor.tokenColorCustomizations": {
-    "[Python Enhanced Dark]": {
-      "textMateRules": [
-        {
-          "scope": "variable.camelcase.python",
-          "settings": {
-            "foreground": "#your-color-here"
-          }
+    "textMateRules": [
+      {
+        "scope": "variable.camelcase.python",
+        "settings": {
+          "foreground": "#4EC9B0"
         }
+      },
+      {
+        "scope": "variable.pascalcase.python", 
+        "settings": {
+          "foreground": "#FF8C00",
+          "fontStyle": "bold"
+        }
+      }
+      // ... more rules
+    ]
+  }
+}
+```
+
+#### For Specific Themes:
+```json
+{
+  "editor.tokenColorCustomizations": {
+    "[Dark+ (default dark)]": {
+      "textMateRules": [
+        { "scope": "variable.camelcase.python", "settings": { "foreground": "#4EC9B0" }}
+      ]
+    },
+    "[Light+ (default light)]": {
+      "textMateRules": [
+        { "scope": "variable.camelcase.python", "settings": { "foreground": "#0066CC" }}
       ]
     }
   }

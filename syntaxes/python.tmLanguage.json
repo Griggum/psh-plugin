@@ -4,19 +4,16 @@
   "scopeName": "source.python.enhanced",
   "patterns": [
     {
-      "include": "#numpy-functions"
-    },
-    {
-      "include": "#pandas-functions"
+      "include": "#naming-conventions"
     },
     {
       "include": "#library-functions"
     },
     {
-      "include": "#naming-conventions"
+      "include": "#numpy-functions"
     },
     {
-      "include": "source.python"
+      "include": "#pandas-functions"
     }
   ],
   "repository": {
@@ -24,12 +21,12 @@
       "patterns": [
         {
           "name": "variable.pascalcase.python",
-          "match": "\\b([A-Z][a-z0-9]+(?:[A-Z][a-z0-9]+)+)\\b",
+          "match": "\\b([A-Z][a-zA-Z0-9]*[a-z][a-zA-Z0-9]*[A-Z][a-zA-Z0-9]*)\\b",
           "comment": "PascalCase identifiers (e.g., MyClass, SomeVariable)"
         },
         {
           "name": "variable.camelcase.python",
-          "match": "\\b([a-z]+(?:[A-Z][a-z0-9]+)+)\\b",
+          "match": "\\b([a-z][a-zA-Z0-9]*[A-Z][a-zA-Z0-9]*)\\b",
           "comment": "camelCase identifiers (e.g., myVariable, someFunction)"
         }
       ]
@@ -54,7 +51,7 @@
     "numpy-functions": {
       "patterns": [
         {
-          "match": "\\b(np|numpy)\\s*\\.\\s*([a-zA-Z_][a-zA-Z0-9_]*(?:\\.[a-zA-Z_][a-zA-Z0-9_]*)*)\\s*(?=\\()",
+          "match": "\\b(np|numpy|npy|nx|num|nparray|array_lib)\\s*\\.\\s*([a-zA-Z_][a-zA-Z0-9_]*(?:\\.[a-zA-Z_][a-zA-Z0-9_]*)*)\\s*(?=\\()",
           "captures": {
             "1": {
               "name": "support.module.numpy.python"
@@ -63,7 +60,7 @@
               "name": "support.function.numpy.python"
             }
           },
-          "comment": "NumPy module function calls (including nested like np.random.normal)"
+          "comment": "NumPy module function calls (including common aliases)"
         },
         {
           "name": "support.function.numpy.python",
@@ -75,7 +72,7 @@
     "pandas-functions": {
       "patterns": [
         {
-          "match": "\\b(pd|pandas)\\s*\\.\\s*([a-zA-Z_][a-zA-Z0-9_]*(?:\\.[a-zA-Z_][a-zA-Z0-9_]*)*)\\s*(?=\\()",
+          "match": "\\b(pd|pandas|pds|dataframes|df_lib|data)\\s*\\.\\s*([a-zA-Z_][a-zA-Z0-9_]*(?:\\.[a-zA-Z_][a-zA-Z0-9_]*)*)\\s*(?=\\()",
           "captures": {
             "1": {
               "name": "support.module.pandas.python"
@@ -87,7 +84,7 @@
           "comment": "Pandas module function calls (including nested)"
         },
         {
-          "match": "\\b(pd|pandas)\\s*\\.\\s*(DataFrame|Series|Index|Panel|TimeSeries|Categorical|Timestamp|Timedelta|Period|Interval)\\b",
+          "match": "\\b(pd|pandas|pds|dataframes|df_lib|data)\\s*\\.\\s*(DataFrame|Series|Index|Panel|TimeSeries|Categorical|Timestamp|Timedelta|Period|Interval)\\b",
           "captures": {
             "1": {
               "name": "support.module.pandas.python"
